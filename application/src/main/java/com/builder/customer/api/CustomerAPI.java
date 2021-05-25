@@ -37,7 +37,7 @@ public class CustomerAPI {
         return saveOrUpdate(representation);
     }
 
-    @DeleteMapping(path = "customer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(path = "customer/{id}")
     public ResponseEntity deleteCustomer(@PathVariable("id") UUID id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.OK).build();
