@@ -46,11 +46,11 @@ https://github1s.com/rscanesilva/sboot-builders-customer
 > Padrão arquitetural que visa descoplar a domínio de frameworks, datasources e qualquer dependência que não faça parte do domínio 
 
 ##### O microserviço foi desenvolvido com springboot + maven e divido em três módulos:
-    - **Application**
+    - Application
         - As apis RESTFul e as implementações de acesso a banco de dados ficam nessa camada
-    - **Common**
+    - Common
         - Classes utilitárias ( não utilizado nesse projeto )
-    - **Domain**
+    - Domain
         - Onde ficam as classes de domíno e interfaces para acesso externo.
 
 ### RESTFul
