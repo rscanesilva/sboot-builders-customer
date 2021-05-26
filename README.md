@@ -102,3 +102,6 @@ $ docker-composer up
 ```
 - **Pronto** - sua a aplicação irá iniciar no host localhost:8080 - acesso a página da documentação em https://localhost:8080/swagger-ui.html
 
+## POSTMAN
+- Na raiz do projeto tem um arquivo com nome *customer-apis-postman.json*, importe esse arquivo no **Postman** e terá um exemplo de todas as APIs expostas, apenas lembresse de trocar o valor das variáveis!
+
