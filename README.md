@@ -92,7 +92,7 @@ https://github1s.com/rscanesilva/sboot-builders-customer
 ```
 $ git clone https://github.com/rscanesilva/sboot-builders-customer.git
 $ cd sboot-builders-custome
-$ mvn client package
+$ mvnw clean package
 ```
 
 - Acesse raíz do módulo "Application" está está armazenado os arquivos *DockerFile* e *docker-compose.yaml*
