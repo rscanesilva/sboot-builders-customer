@@ -90,7 +90,7 @@ https://github1s.com/rscanesilva/sboot-builders-customer
 - Acesse a pasta raiz do projeto e execute o comando mvn clean package:
 ```
 $ git clone https://github.com/rscanesilva/sboot-builders-customer.git
-$ cd sboot-builders-custome
+$ cd sboot-builders-customer
 $ mvnw clean package
 ```
 
