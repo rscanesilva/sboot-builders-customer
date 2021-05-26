@@ -90,9 +90,11 @@ https://github1s.com/rscanesilva/sboot-builders-customer
 - Faça o clone do repositório git em: https://github.com/rscanesilva/sboot-builders-customer
 - Acesse a past raiz do projeto e execute o comando
 ```
+$ git clone https://github.com/rscanesilva/sboot-builders-customer.git
+$ cd sboot-builders-custome
 $ mvn client package
 ```
-**Passo para quem vai rodar via mav
+
 - Acesse raíz do módulo "Application" está está armazenado os arquivos *DockerFile* e *docker-compose.yaml*
 - Execute o seguinte comando
 ```
