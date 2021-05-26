@@ -1,0 +1,154 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CustomerAPIs",
+		"_postman_id": "a6cd8504-d1a6-4746-9117-de30974dbfe8",
+		"description": "Test Builders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - List all customers",
+			"request": {
+				"url": "http://localhost:8080/api/customers",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post - Create new customer",
+			"request": {
+				"url": "http://localhost:8080/api/customer",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bill Gates\",\n    \"birthDate\": \"28/10/1955\",\n    \"personType\": \"PF\",\n    \"document\": \"527.325.680-15\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Customer By ID",
+			"request": {
+				"url": "http://localhost:8080/api/customer/{{ID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Customer By CPF",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/customer/pf?cpf={{CPF}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer",
+						"pf"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "{{CPF}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Update Customer",
+			"request": {
+				"url": "http://localhost:8080/api/customer",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"8f279aec-e680-47ed-a071-20af2c7ff27d\",\n    \"name\": \"Bill Gates\",\n    \"birthDate\": \"28/10/1955\",\n    \"personType\": \"PF\",\n    \"document\": \"527.325.680-15\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Delete Customer",
+			"request": {
+				"url": "http://localhost:8080/api/customer/{{ID}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET - List Customers by Name",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/customers/Bill?page=0&pageSize=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"Bill"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "pageSize",
+							"value": "10",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
