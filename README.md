@@ -30,7 +30,7 @@ https://github1s.com/rscanesilva/sboot-builders-customer
 - Kubernetes (deploy no Google Kubernetes Engine)
 
 ### SOLID
-> Cinco princípios de orientação a objetos aplicados no projeto.
+> Cinco princípios de orientação a objetos.
 
 - **1 Single Responsiblity Principle - (Responsabilidade Única)**
     - As classes foram modeladas de forma que possuem fraco acoplamento e seus atributos e métodos são coesos.
