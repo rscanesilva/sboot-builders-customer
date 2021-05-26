@@ -2,10 +2,12 @@ package com.builder.customer.domain;
 
 import br.com.caelum.stella.validation.CNPJValidator;
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Getter
 public class CNPJ implements Document {
-
+    private final Logger log = LoggerFactory.getLogger(Document.class);
     private String number;
 
     public CNPJ(String number) {
@@ -17,6 +19,7 @@ public class CNPJ implements Document {
         try {
             new CNPJValidator(isFormatted).assertValid(number.trim());
         } catch (RuntimeException ex) {
+            log.info("Invalid CNPJ");
             return false;
         }
         return true;
@@ -40,6 +43,7 @@ public class CNPJ implements Document {
         if(validateDocumentNumber(number, false)) {
             this.number = number;
         } else {
+            log.info("Invalid CNPJ");
             throw new IllegalArgumentException("Invalid CNPJ");
         }
     }

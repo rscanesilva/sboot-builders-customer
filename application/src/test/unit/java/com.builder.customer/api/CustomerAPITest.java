@@ -115,7 +115,7 @@ public class CustomerAPITest {
 
     @Test
     public void shouldReturnCustomersByCPF() {
-        ResponseEntity responseEntity = api.getCustomerByCPF(Mockito.anyString());
+        ResponseEntity responseEntity = api.getCustomerByCPF(MocksCommon.CPF);
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assert.assertEquals(MocksCommon.CPF, ((CustomerRepresentation)responseEntity.getBody()).getDocument());
     }
@@ -125,7 +125,7 @@ public class CustomerAPITest {
         Mockito.when(service.getCustomerByDocument(Mockito.any()))
                 .thenReturn(Optional.empty());
 
-        ResponseEntity responseEntity = api.getCustomerByCPF(Mockito.anyString());
+        ResponseEntity responseEntity = api.getCustomerByCPF(MocksCommon.CPF);
         Assert.assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
         Assert.assertEquals(null, responseEntity.getBody());
     }
@@ -135,7 +135,7 @@ public class CustomerAPITest {
         Mockito.when(service.getCustomerByDocument(Mockito.any()))
                 .thenReturn(Optional.of(MocksCommon.getCustomerDomainMock(PersonType.PJ)));
 
-        ResponseEntity responseEntity = api.getCustomerByCNPJ(Mockito.anyString());
+        ResponseEntity responseEntity = api.getCustomerByCNPJ(MocksCommon.CNPJ);
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assert.assertEquals(MocksCommon.CNPJ, ((CustomerRepresentation)responseEntity.getBody()).getDocument());
     }
@@ -145,20 +145,20 @@ public class CustomerAPITest {
         Mockito.when(service.getCustomerByDocument(Mockito.any()))
                 .thenReturn(Optional.empty());
 
-        ResponseEntity responseEntity = api.getCustomerByCNPJ(Mockito.anyString());
+        ResponseEntity responseEntity = api.getCustomerByCNPJ(MocksCommon.CNPJ);
         Assert.assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
         Assert.assertEquals(null, responseEntity.getBody());
     }
 
     @Test
-    public void shouldReturnCustomersByName() {
+    public void shouldReturnCustomersByName() throws CustomerException {
         ResponseEntity responseEntity = api.getCustomersByName(Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assert.assertEquals(MocksCommon.ID, ((List<CustomerRepresentation>)responseEntity.getBody()).get(0).getId());
     }
 
     @Test
-    public void shouldReturnEmptyCustomersByName() {
+    public void shouldReturnEmptyCustomersByName() throws CustomerException {
         Mockito.when(service.getCustomersByName(Mockito.any(), Mockito.anyInt(), Mockito.anyInt()))
                 .thenReturn(new ArrayList<>());
 

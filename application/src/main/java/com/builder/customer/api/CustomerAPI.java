@@ -1,5 +1,7 @@
 package com.builder.customer.api;
 
+import com.builder.customer.domain.CNPJ;
+import com.builder.customer.domain.CPF;
 import com.builder.customer.presentation.CustomerRepresentation;
 import com.builder.customer.domain.Customer;
 import com.builder.customer.port.exception.CustomerException;
@@ -43,7 +45,7 @@ public class CustomerAPI {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping(path = "customer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "customer/{id}")
     public ResponseEntity getCustomerById(@PathVariable("id") UUID id) {
         Optional<Customer> customer = service.getCustomerById(id);
         if (customer.isPresent()) {
@@ -52,25 +54,34 @@ public class CustomerAPI {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping(path = "customer/cpf/{cpf}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getCustomerByCPF(@PathVariable("cpf") String cpf) {
-        Optional<Customer> customer = service.getCustomerByDocument(cpf);
-        if (customer.isPresent()) {
-            return ResponseEntity.ok(CustomerRepresentation.fromCustomer(customer.get()));
+    @GetMapping(path = "customer/pf")
+    public ResponseEntity getCustomerByCPF(@RequestParam("cpf") String cpf) {
+        try {
+            Optional<Customer> customer = service.getCustomerByDocument(new CPF(cpf));
+            if (customer.isPresent()) {
+                return ResponseEntity.ok(CustomerRepresentation.fromCustomer(customer.get()));
+            }
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping(path = "customer/cnpj/{cnpj}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getCustomerByCNPJ(@PathVariable("cnpj") String cnpj) {
-        Optional<Customer> customer = service.getCustomerByDocument(cnpj);
-        if (customer.isPresent()) {
-            return ResponseEntity.ok(CustomerRepresentation.fromCustomer(customer.get()));
+    @GetMapping(path = "customer/pj")
+    public ResponseEntity getCustomerByCNPJ(@RequestParam("cnpj") String cnpj) {
+        try {
+            Optional<Customer> customer = service.getCustomerByDocument(new CNPJ(cnpj));
+            if (customer.isPresent()) {
+                return ResponseEntity.ok(CustomerRepresentation.fromCustomer(customer.get()));
+            }
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
     }
 
-    @GetMapping(path = "customers/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "customers/{name}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<List<CustomerRepresentation>> getCustomersByName(
             @PathVariable(value = "name") String name,
@@ -87,7 +98,7 @@ public class CustomerAPI {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping(path="customers", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="customers")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<List<CustomerRepresentation>> getAllCustomers(
             @RequestParam(value = "page", defaultValue = "0", required = false) int page,

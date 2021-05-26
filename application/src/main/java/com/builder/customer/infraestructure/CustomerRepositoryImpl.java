@@ -3,6 +3,8 @@ package com.builder.customer.infraestructure;
 import com.builder.customer.domain.Customer;
 import com.builder.customer.port.exception.CustomerException;
 import com.builder.customer.port.CustomerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
-
+    private static final Logger log = LoggerFactory.getLogger(CustomerRepositoryImpl.class);
     private final SpringDataCustomerRepository repository;
 
     @Autowired
@@ -37,7 +39,11 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public Optional<Customer> getCustomerByDocument(String document) {
-        return Optional.of(repository.getCustomerByDocument(document).toCustomer());
+        CustomerEntity entity = repository.getCustomerByDocument(document);
+        if (entity != null) {
+            return Optional.of(entity.toCustomer());
+        }
+        return Optional.empty();
     }
 
     @Override
@@ -66,6 +72,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         try {
             repository.save(CustomerEntity.fromCustomer(customer));
         }  catch (DataIntegrityViolationException ex) {
+            log.error(ex.getMessage(), ex.getRootCause());
             throw new CustomerException("Document already used", ex);
         }
     }

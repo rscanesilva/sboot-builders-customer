@@ -11,9 +11,16 @@ public class MocksCommon {
 
     public static final String NAME = "Rafael Scane";
     public static final LocalDate BIRTHDATE = LocalDate.of(1991, 10, 19);
+
     public static final String CPF = "568.108.380-23";
+    public static final String CPF_WITHOUT_MASK = "56810838023";
+
     public static final String CNPJ = "11.353.623/0001-64";
+    public static final String CNPJ_WITHOUT_MASK = "11353623000164";
+
     public static final String PF = "PF";
+    public static final String PJ = "PJ";
+
     public static final UUID ID = UUID.randomUUID();
 
 

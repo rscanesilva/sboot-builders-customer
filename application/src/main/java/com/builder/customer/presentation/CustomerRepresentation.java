@@ -2,6 +2,7 @@ package com.builder.customer.presentation;
 
 import com.builder.customer.api.CustomerAPI;
 import com.builder.customer.domain.*;
+import com.builder.customer.port.exception.CustomerException;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +35,7 @@ public class CustomerRepresentation extends RepresentationModel<CustomerRepresen
     private Long age;
 
     public Customer toCustomer() {
-        PersonType personType = PersonType.valueOf(this.personType);
+        PersonType personType = PersonType.valueOf(this.personType.toLowerCase());
         Document doc = null;
         if (personType.equals(PersonType.PF)) {
             doc = new CPF(this.document);

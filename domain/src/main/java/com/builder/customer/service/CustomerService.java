@@ -1,6 +1,7 @@
 package com.builder.customer.service;
 
 import com.builder.customer.domain.Customer;
+import com.builder.customer.domain.Document;
 import com.builder.customer.port.CustomerRepository;
 import com.builder.customer.port.exception.CustomerException;
 
@@ -21,8 +22,8 @@ public class CustomerService {
         return repository.getCustomerById(id);
     }
 
-    public Optional<Customer> getCustomerByDocument(String document) {
-        return repository.getCustomerByDocument(document);
+    public Optional<Customer> getCustomerByDocument(Document document) {
+        return repository.getCustomerByDocument(document.getNumberWithoutMask());
     }
 
     public List<Customer> getCustomersByName(String name, int pageNumber, int pageSize) {
