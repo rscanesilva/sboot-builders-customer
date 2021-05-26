@@ -80,8 +80,7 @@ https://github1s.com/rscanesilva/sboot-builders-customer
 ### Como Rodar a aplicação local?
 **Pré requisitos**
 
-- Java 11 
-- Maven 
+- Java 11  
 - Docker
 - Docker Composer 
 
