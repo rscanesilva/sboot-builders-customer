@@ -1,13 +1,13 @@
 spring:
   profiles:
     active: local
-hateoas:
-  use-hal-as-default-json-media-type: false
+
+  hateoas:
+    use-hal-as-default-json-media-type: false
 springdoc:
   swagger-ui:
     operationsSorter: method
   swagger-ui.use-root-path: true
-
 ---
 spring:
   config:
@@ -34,3 +34,4 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
