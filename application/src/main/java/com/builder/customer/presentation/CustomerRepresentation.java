@@ -35,7 +35,7 @@ public class CustomerRepresentation extends RepresentationModel<CustomerRepresen
     private Long age;
 
     public Customer toCustomer() {
-        PersonType personType = PersonType.valueOf(this.personType.toLowerCase());
+        PersonType personType = PersonType.valueOf(this.personType.toUpperCase());
         Document doc = null;
         if (personType.equals(PersonType.PF)) {
             doc = new CPF(this.document);

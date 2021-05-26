@@ -8,16 +8,23 @@ services:
       - MYSQL_USER=builder
       - MYSQL_PASSWORD=admin
     expose:
-      - 3309
+      - 3306
+    networks:
+      - builder
   backend:
     build: .
     depends_on:
       - mysql
     ports:
       - 8080:8080
+    networks:
+      - builder
     environment:
       - DATABASE_HOST=mysql
       - DATABASE_USER=builder
-      - DATABASE_NAME=bd_pessoa
+      - DATABASE_NAME=builder
       - DATABASE_PASSWORD=admin
-      - DATABASE_PORT=3309
+      - DATABASE_PORT=3306
+networks:
+  builder:
+    driver: bridge
