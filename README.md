@@ -39,11 +39,11 @@ https://github1s.com/rscanesilva/sboot-builders-customer
 - **3 Liskov Substitution Principle - (subustituição de Liskov)**  : *Não foi utilizado*
 - **4 Interface Segregation Principle - (Segregaçõ de interface)**  : *Não foi utilizado*
 - **5 Dependency Inversion Principle: - (Inversão de dependência)**
-    - Utilizado neste projeto para acesso a base de dados de forma totalmente desacoplada do tipo da origem dos dados e frameworks utilizados para acessá-los. No módulo "Domain" para não termos nenhum acoplamento a origem e tipo dos dados externos, apenas disponibilizamos a interface (contrato) de acesso aos dados que foi implementada no módulo "Application". 
-    Fazendo assim, o dominío não tem nenhum acoplamento com a modelo e ferramentas que fazem acesso aos dados. Se um dia precisar troca o banco de dados Mysql Para MongoDb por exemplo, a camada de domínio não seria impactada.
+    - Utilizado neste projeto para acesso a base de dados de forma totalmente desacoplada do tipo, origem dos dados e frameworks utilizados para acessá-los. O módulo "Domain" apenas disponibiliza a interface de acesso aos dados para ser implementada no módulo "Application". 
+    Fazendo assim, o "Domain" não tem nenhum acoplamento com a forma e tecnologias utilizadas para acesso aos dados. Se um dia precisar troca o banco de dados Mysql Para MongoDb por exemplo, a camada de domínio não seria impactada.
 
 ### Arquitetura Hexagonal
-> Padrão arquitetural que visa descoplar a domínio de frameworks, datasources e qualquer dependência que não faça parte do domínio 
+> Padrão arquitetural que divide a aplicação em camadas com atenção especial a camada "Domain" visando deixar domínio da aplicação desacoplado de frameworks e agentes externos como, por exemplo, portas de entrada (Rest, gRPC, CLI,) e acesso a dados ( Apis, Arquivos, BD Relacionais, BD NoSql, Frameworks e etc).
 
 ##### O microserviço foi desenvolvido com springboot + maven e divido em três módulos:
     - Application
