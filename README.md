@@ -87,20 +87,32 @@ https://github1s.com/rscanesilva/sboot-builders-customer
 **Instalação**
 
 - Faça o clone do repositório git em: https://github.com/rscanesilva/sboot-builders-customer
-- Acesse a past raiz do projeto e execute o comando
+- Acesse a pasta raiz do projeto e execute o comando mvn clean package:
 ```
 $ git clone https://github.com/rscanesilva/sboot-builders-customer.git
 $ cd sboot-builders-custome
 $ mvnw clean package
 ```
 
-- Acesse raíz do módulo "Application" está está armazenado os arquivos *DockerFile* e *docker-compose.yaml*
+- Acesse a raíz do módulo "Application" onde está está armazenado os arquivos *DockerFile* e *docker-compose.yaml*
 - Execute o seguinte comando
 ```
 $ docker-composer up
 ```
-- **Pronto** - sua a aplicação irá iniciar no host localhost:8080 - acesso a página da documentação em https://localhost:8080/swagger-ui.html
+- **Pronto** - sua a aplicação irá iniciar no host localhost:8080 - acesso a página da documentação em https://localhost:8080/swagger-ui.html.
 
+**Observações**
+- Banco de dados irá iniciar sem nenhuma carga inicial, faça alguns cadastros para ter dados para consultas.
+- A aplicação só aceita CPFs ou CPNJs válidos, utilize dados reais ou um gerador de CPF/CNPJ. Exemplo de request válido para cadastro
+    ```
+    {
+        "name": "Bill Gates",
+        "birthDate": "28/10/1955",
+        "personType": "PF",
+        "document": "527.325.680-15"
+    }
+    ```
+    
 ## POSTMAN
 - Na raiz do projeto tem um arquivo com nome *customer-apis-postman.json*, importe esse arquivo no **Postman** e terá um exemplo de todas as APIs expostas, apenas lembresse de trocar o valor das variáveis!
 
